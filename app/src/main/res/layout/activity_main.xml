@@ -27,7 +27,7 @@
             android:id="@+id/textViewHistory"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="TextView"
+            android:text="@string/textviewHistory"
             android:textAlignment="textEnd"
             android:textAllCaps="false"
             android:textSize="34sp"
@@ -37,7 +37,7 @@
             android:id="@+id/textViewOperation"
             android:layout_width="match_parent"
             android:layout_height="51dp"
-            android:text="TextView"
+            android:text="@string/textviewOperation"
             android:textAlignment="textEnd"
             android:textSize="34sp" />
 
@@ -51,28 +51,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="C" />
+                android:text="@string/buttonClearAll" />
 
             <Button
                 android:id="@+id/btnClear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CE" />
+                android:text="@string/btnClear" />
 
             <Button
                 android:id="@+id/btnPow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="POW" />
+                android:text="@string/btnPow" />
 
             <Button
                 android:id="@+id/btnSquareRoot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ROOT" />
+                android:text="@string/btnRoot" />
         </LinearLayout>
 
         <LinearLayout
@@ -85,28 +85,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="7" />
+                android:text="@string/number7" />
 
             <Button
                 android:id="@+id/number8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="8" />
+                android:text="@string/number8" />
 
             <Button
                 android:id="@+id/number9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="9" />
+                android:text="@string/number9" />
 
             <Button
                 android:id="@+id/btnDivide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="/" />
+                android:text="@string/btnDivide" />
         </LinearLayout>
 
         <LinearLayout
@@ -119,28 +119,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="4" />
+                android:text="@string/number4" />
 
             <Button
                 android:id="@+id/number5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="5" />
+                android:text="@string/number5" />
 
             <Button
                 android:id="@+id/number6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="6" />
+                android:text="@string/number6" />
 
             <Button
                 android:id="@+id/btnMultiply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="x" />
+                android:text="@string/btnMultiply" />
         </LinearLayout>
 
         <LinearLayout
@@ -153,28 +153,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1" />
+                android:text="@string/number1" />
 
             <Button
                 android:id="@+id/number2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="2" />
+                android:text="@string/number2" />
 
             <Button
                 android:id="@+id/number3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="3" />
+                android:text="@string/number3" />
 
             <Button
                 android:id="@+id/btnMinus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-" />
+                android:text="@string/btnMinus" />
         </LinearLayout>
 
         <LinearLayout
@@ -187,14 +187,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="0" />
+                android:text="@string/number0" />
 
             <Button
                 android:id="@+id/btnDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="." />
+                android:text="@string/btnDot" />
 
             <Button
                 android:id="@+id/btnEquals"
@@ -202,14 +202,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="equal"
-                android:text="=" />
+                android:text="@string/btnEquals" />
 
             <Button
                 android:id="@+id/btnPlus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="+" />
+                android:text="@string/btnPlus" />
         </LinearLayout>
 
     </LinearLayout>
