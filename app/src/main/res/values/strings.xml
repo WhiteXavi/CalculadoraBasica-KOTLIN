@@ -20,6 +20,6 @@
     <string name="btnDivide">/</string>
     <string name="btnRoot">ROOT</string>
     <string name="number8">8</string>
-    <string name="textviewHistory">TextView</string>
-    <string name="textviewOperation">TextView</string>
+    <string name="textviewHistory">Historial de operaciones</string>
+    <string name="textviewOperation">0</string>
 </resources>

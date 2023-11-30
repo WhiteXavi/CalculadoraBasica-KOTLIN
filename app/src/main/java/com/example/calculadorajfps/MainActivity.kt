@@ -35,9 +35,14 @@ class MainActivity : AppCompatActivity() {
         val clear = findViewById<Button>(R.id.btnClear)
         val clearAll = findViewById<Button>(R.id.btnClearAll)
 
+
+
         //El textView que se encarga de la operacion
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
+        //El historial de operaciones
+        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
 
+        //esto pone el text de operaciones con el numero correspondiente pero no añade el otro detras
         number0.setOnClickListener{
             textViewOperation.setText("0")
         }
@@ -82,6 +87,12 @@ class MainActivity : AppCompatActivity() {
             textViewOperation.setText(".")
         }
 
+        plus.setOnClickListener{
+            val operation = textViewOperation.text
+            textViewHistory.setText(textViewHistory.text)
+            textViewHistory.setText(operation)
+        }
+
     }
 
     fun equal(v: View){
@@ -90,11 +101,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun plus(v: View){
-        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
-        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
-        val operation = textViewOperation.text
-        textViewHistory.setText(operation)
-    }
+
 
 }
