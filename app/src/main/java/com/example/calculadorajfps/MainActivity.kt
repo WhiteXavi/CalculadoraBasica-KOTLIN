@@ -25,15 +25,15 @@ class MainActivity : AppCompatActivity() {
 
         //Los demas botones de la calculadora
         val dot = findViewById<Button>(R.id.btnDot)
-        val equal = findViewById<Button>(R.id.btnEquals)
+        // val equal = findViewById<Button>(R.id.btnEquals)
         val plus = findViewById<Button>(R.id.btnPlus)
-        val pow = findViewById<Button>(R.id.btnPow)
-        val minus = findViewById<Button>(R.id.btnMinus)
-        val multiply = findViewById<Button>(R.id.btnMultiply)
-        val divide = findViewById<Button>(R.id.btnDivide)
-        val root = findViewById<Button>(R.id.btnSquareRoot)
-        val clear = findViewById<Button>(R.id.btnClear)
-        val clearAll = findViewById<Button>(R.id.btnClearAll)
+        // val pow = findViewById<Button>(R.id.btnPow)
+        // val minus = findViewById<Button>(R.id.btnMinus)
+        // val multiply = findViewById<Button>(R.id.btnMultiply)
+        // val divide = findViewById<Button>(R.id.btnDivide)
+        // val root = findViewById<Button>(R.id.btnSquareRoot)
+        // val clear = findViewById<Button>(R.id.btnClear)
+        // val clearAll = findViewById<Button>(R.id.btnClearAll)
 
 
 
@@ -44,61 +44,106 @@ class MainActivity : AppCompatActivity() {
 
         //esto pone el text de operaciones con el numero correspondiente pero no añade el otro detras
         number0.setOnClickListener{
-            textViewOperation.setText("0")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"0")
         }
 
         number1.setOnClickListener{
-            textViewOperation.setText("1")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"1")
         }
 
         number2.setOnClickListener{
-            textViewOperation.setText("2")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"2")
         }
 
         number3.setOnClickListener{
-            textViewOperation.setText("3")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"3")
         }
 
         number4.setOnClickListener{
-            textViewOperation.setText("4")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"4")
         }
 
         number5.setOnClickListener{
-            textViewOperation.setText("5")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"5")
         }
 
         number6.setOnClickListener{
-            textViewOperation.setText("6")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"6")
         }
 
         number7.setOnClickListener{
-            textViewOperation.setText("7")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"7")
         }
 
         number8.setOnClickListener{
-            textViewOperation.setText("8")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"8")
         }
 
         number9.setOnClickListener{
-            textViewOperation.setText("9")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,"9")
         }
 
         dot.setOnClickListener {
-            textViewOperation.setText(".")
+            val string1 = textViewOperation.text
+            textViewOperation.text = concat(string1 as String,".")
         }
 
         plus.setOnClickListener{
             val operation = textViewOperation.text
-            textViewHistory.setText(textViewHistory.text)
-            textViewHistory.setText(operation)
+            textViewHistory.text = textViewHistory.text
+            textViewHistory.text = operation
         }
 
     }
 
-    fun equal(v: View){
+    fun clear(v:View){
+        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
+        textViewOperation.text = ""
+    }
+
+    fun clearAll(v:View){
+        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
+        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
+        textViewOperation.text = ""
+        textViewHistory.text = ""
+    }
+
+    fun equal(v:View){
         val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
+        var string1 = textViewOperation.text
+        var string2 = textViewHistory.text
+        textViewHistory.text = concat(string2 as String, string1 as String)
+    }
 
+    fun plus(v:View){
+        //guardo valores
+        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
+        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
+        //uso de variables
+        var string1 = textViewOperation.text
+        var string2 = textViewHistory.text
+        string2 = concat(string2 as String, " ")
+        string1 = concat(string1 as String, " ")
+        //concateno
+        textViewHistory.text = concat(string2 as String, string1 as String)
+        string2 = textViewHistory.text
+        textViewHistory.text = concat(string2 as String, " + ")
+        textViewOperation.text = ""
+    }
+
+    fun concat(s1: String, s2: String): String {
+        return s1 + s2
     }
 
 

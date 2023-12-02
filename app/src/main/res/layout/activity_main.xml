@@ -27,7 +27,6 @@
             android:id="@+id/textViewHistory"
             android:layout_width="398dp"
             android:layout_height="56dp"
-            android:text="@string/textviewHistory"
             android:textAlignment="textEnd"
             android:textAllCaps="false"
             android:textSize="34sp"
@@ -37,7 +36,6 @@
             android:id="@+id/textViewOperation"
             android:layout_width="398dp"
             android:layout_height="51dp"
-            android:text="@string/textviewOperation"
             android:textAlignment="textEnd"
             android:textSize="34sp" />
 
@@ -51,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="clearAll"
                 android:text="@string/buttonClearAll" />
 
             <Button
@@ -58,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="clear"
                 android:text="@string/btnClear" />
 
             <Button
@@ -194,6 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="equal"
                 android:text="@string/btnDot" />
 
             <Button
@@ -209,6 +210,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="plus"
                 android:text="@string/btnPlus" />
         </LinearLayout>
 
