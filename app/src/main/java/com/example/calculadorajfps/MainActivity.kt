@@ -25,15 +25,15 @@ class MainActivity : AppCompatActivity() {
 
         //Los demas botones de la calculadora
         val dot = findViewById<Button>(R.id.btnDot)
-        // val equal = findViewById<Button>(R.id.btnEquals)
+        val equal = findViewById<Button>(R.id.btnEquals)
         val plus = findViewById<Button>(R.id.btnPlus)
-        // val pow = findViewById<Button>(R.id.btnPow)
-        // val minus = findViewById<Button>(R.id.btnMinus)
-        // val multiply = findViewById<Button>(R.id.btnMultiply)
-        // val divide = findViewById<Button>(R.id.btnDivide)
-        // val root = findViewById<Button>(R.id.btnSquareRoot)
-        // val clear = findViewById<Button>(R.id.btnClear)
-        // val clearAll = findViewById<Button>(R.id.btnClearAll)
+        val pow = findViewById<Button>(R.id.btnPow)
+        val minus = findViewById<Button>(R.id.btnMinus)
+        val multiply = findViewById<Button>(R.id.btnMultiply)
+        val divide = findViewById<Button>(R.id.btnDivide)
+        val root = findViewById<Button>(R.id.btnSquareRoot)
+        val clear = findViewById<Button>(R.id.btnClear)
+        val clearAll = findViewById<Button>(R.id.btnClearAll)
 
 
 
@@ -99,9 +99,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         plus.setOnClickListener{
+
             val operation = textViewOperation.text
             textViewHistory.text = textViewHistory.text
             textViewHistory.text = operation
+        }
+
+        fun disable(){
+            pow.isEnabled = false;
+            root.isEnabled = false;
+            minus.isEnabled = false;
+            plus.isEnabled = false;
         }
 
     }
@@ -117,6 +125,8 @@ class MainActivity : AppCompatActivity() {
         textViewOperation.text = ""
         textViewHistory.text = ""
     }
+
+
 
     fun equal(v:View){
         val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
