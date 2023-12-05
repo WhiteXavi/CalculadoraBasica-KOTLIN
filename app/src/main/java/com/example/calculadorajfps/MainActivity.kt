@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import java.lang.Compiler.disable
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         val clear = findViewById<Button>(R.id.btnClear)
         val clearAll = findViewById<Button>(R.id.btnClearAll)
 
-
+        //Numeros que vamos a almacenar
+        var firstNumber = 0;
+        var secondNumber = 0;
 
         //El textView que se encarga de la operacion
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
@@ -100,9 +103,21 @@ class MainActivity : AppCompatActivity() {
 
         plus.setOnClickListener{
 
-            val operation = textViewOperation.text
-            textViewHistory.text = textViewHistory.text
-            textViewHistory.text = operation
+            var string1 = textViewOperation.text
+            var string2 = textViewHistory.text
+            firstNumber = textViewOperation.text as Int;
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            string2 = textViewHistory.text
+            textViewHistory.text = concat(string2 as String, " + ")
+            textViewOperation.text = ""
+            disable()
+        }
+
+        equal.setOnClickListener{
+
         }
 
         fun disable(){
@@ -110,6 +125,23 @@ class MainActivity : AppCompatActivity() {
             root.isEnabled = false;
             minus.isEnabled = false;
             plus.isEnabled = false;
+            multiply.isEnabled = false;
+            divide.isEnabled = false;
+        }
+
+        fun enable(){
+            pow.isEnabled = true;
+            root.isEnabled = true;
+            minus.isEnabled = true;
+            plus.isEnabled = true;
+            multiply.isEnabled = true;
+            divide.isEnabled = true;
+        }
+
+        fun equal(v:View){
+            var string1 = textViewOperation.text
+            var string2 = textViewHistory.text
+            textViewHistory.text = concat(string2 as String, string1 as String)
         }
 
     }
@@ -124,32 +156,6 @@ class MainActivity : AppCompatActivity() {
         val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
         textViewOperation.text = ""
         textViewHistory.text = ""
-    }
-
-
-
-    fun equal(v:View){
-        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
-        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
-        var string1 = textViewOperation.text
-        var string2 = textViewHistory.text
-        textViewHistory.text = concat(string2 as String, string1 as String)
-    }
-
-    fun plus(v:View){
-        //guardo valores
-        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
-        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
-        //uso de variables
-        var string1 = textViewOperation.text
-        var string2 = textViewHistory.text
-        string2 = concat(string2 as String, " ")
-        string1 = concat(string1 as String, " ")
-        //concateno
-        textViewHistory.text = concat(string2 as String, string1 as String)
-        string2 = textViewHistory.text
-        textViewHistory.text = concat(string2 as String, " + ")
-        textViewOperation.text = ""
     }
 
     fun concat(s1: String, s2: String): String {
