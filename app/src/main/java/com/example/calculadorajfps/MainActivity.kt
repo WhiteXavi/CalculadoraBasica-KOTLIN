@@ -113,11 +113,12 @@ class MainActivity : AppCompatActivity() {
             string2 = textViewHistory.text
             textViewHistory.text = concat(string2 as String, " + ")
             textViewOperation.text = ""
+            //Deshabilito los botones
             disable()
         }
 
         equal.setOnClickListener{
-
+            
         }
 
         fun disable(){
