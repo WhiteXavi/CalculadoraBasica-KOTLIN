@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import kotlin.math.pow
+import kotlin. math. sqrt
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,12 +106,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         plus.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
             //Guardo el texto del historial de operaciones
             var string2 = textViewHistory.text
             //Guardo el primer numero como un double
-            firstNumber = textViewOperation.text as Double
+            firstNumber = (textViewOperation.text as String).toDouble();
             //Guardo el operador que voy a usar
             operator = "+"
             //concateno las string con espacios para que se muestre separado
@@ -128,19 +134,230 @@ class MainActivity : AppCompatActivity() {
             disable()
         }
 
+        minus.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            //Guardo el texto del primer numero
+            var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
+            var string2 = textViewHistory.text
+            //Guardo el primer numero como un double
+            firstNumber = (textViewOperation.text as String).toDouble();
+            //Guardo el operador que voy a usar
+            operator = "-"
+            //concateno las string con espacios para que se muestre separado
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
+            string2 = textViewHistory.text
+            // le añado el operador + al historial
+            textViewHistory.text = concat(string2 as String, " - ")
+            //vacio el texto de operacion
+            textViewOperation.text = ""
+            //Deshabilito los botones
+            disable()
+        }
+
+        multiply.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            //Guardo el texto del primer numero
+            var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
+            var string2 = textViewHistory.text
+            //Guardo el primer numero como un double
+            firstNumber = (textViewOperation.text as String).toDouble();
+            //Guardo el operador que voy a usar
+            operator = "*"
+            //concateno las string con espacios para que se muestre separado
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
+            string2 = textViewHistory.text
+            // le añado el operador + al historial
+            textViewHistory.text = concat(string2 as String, " x ")
+            //vacio el texto de operacion
+            textViewOperation.text = ""
+            //Deshabilito los botones
+            disable()
+        }
+
+        divide.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            //Guardo el texto del primer numero
+            var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
+            var string2 = textViewHistory.text
+            //Guardo el primer numero como un double
+            firstNumber = (textViewOperation.text as String).toDouble();
+            //Guardo el operador que voy a usar
+            operator = "/"
+            //concateno las string con espacios para que se muestre separado
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
+            string2 = textViewHistory.text
+            // le añado el operador + al historial
+            textViewHistory.text = concat(string2 as String, "/")
+            //vacio el texto de operacion
+            textViewOperation.text = ""
+            //Deshabilito los botones
+            disable()
+        }
+
+        pow.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            //Guardo el texto del primer numero
+            var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
+            var string2 = textViewHistory.text
+            //Guardo el primer numero como un double
+            firstNumber = (textViewOperation.text as String).toDouble();
+            //Guardo el operador que voy a usar
+            operator = "pow"
+            //concateno las string con espacios para que se muestre separado
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
+            string2 = textViewHistory.text
+            // le añado el operador + al historial
+            textViewHistory.text = concat(string2 as String, " ^ ")
+            //vacio el texto de operacion
+            textViewOperation.text = ""
+            //Deshabilito los botones
+            disable()
+        }
+
+        root.setOnClickListener{
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            //Guardo el texto del primer numero
+            var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
+            var string2 = textViewHistory.text
+            //Guardo el primer numero como un double
+            firstNumber = (textViewOperation.text as String).toDouble();
+            //Guardo el operador que voy a usar
+            operator = "sqrt"
+            //concateno las string con espacios para que se muestre separado
+            string2 = concat(string2 as String, " ")
+            string1 = concat(string1 as String, " ")
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
+            textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
+            string2 = textViewHistory.text
+            // le añado el operador + al historial
+            textViewHistory.text = concat(string2 as String, " sqrt ")
+            //vacio el texto de operacion
+            textViewOperation.text = ""
+            //Deshabilito los botones
+            disable()
+        }
+
+
         equal.setOnClickListener{
             if(operator.equals("+")){
-                secondNumber = textViewOperation.text as Double
+                secondNumber = (textViewOperation.text as String).toDouble()
                 var result = firstNumber+secondNumber
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
                 string1 = concat(string1 as String, " ")
-                string1 = concat(string1 as String, "+ ")
-                string2 = concat(string2 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
-                textViewOperation.text = result as String
+                textViewOperation.text = result.toString()
                 enable()
             }
+
+            if(operator.equals("-")){
+                secondNumber = (textViewOperation.text as String).toDouble()
+                var result = firstNumber-secondNumber
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result.toString()
+                enable()
+            }
+
+            if(operator.equals("*")){
+                secondNumber = (textViewOperation.text as String).toDouble()
+                var result = firstNumber*secondNumber
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result.toString()
+                enable()
+            }
+
+            if(operator.equals("/")){
+                secondNumber = (textViewOperation.text as String).toDouble()
+                var result = firstNumber/secondNumber
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result.toString()
+                enable()
+            }
+
+            if(operator.equals("pow")){
+                secondNumber = (textViewOperation.text as String).toDouble()
+                var result = firstNumber.pow(secondNumber)
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result.toString()
+                enable()
+            }
+
+            if(operator.equals("sqrt")){
+                var result = sqrt(firstNumber)
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string2 = concat(string2 as String, " = ")
+                string2 = concat(string2 as String, result.toString())
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result.toString()
+                enable()
+            }
+
         }
 
     }

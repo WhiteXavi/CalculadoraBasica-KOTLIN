@@ -18,6 +18,6 @@
     <string name="btnClear">CE</string>
     <string name="btnPow">POW</string>
     <string name="btnDivide">/</string>
-    <string name="btnRoot">ROOT</string>
+    <string name="btnRoot">SQRT</string>
     <string name="number8">8</string>
 </resources>
