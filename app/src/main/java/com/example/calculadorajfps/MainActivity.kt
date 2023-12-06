@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import java.lang.Compiler.disable
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +36,11 @@ class MainActivity : AppCompatActivity() {
         val clearAll = findViewById<Button>(R.id.btnClearAll)
 
         //Numeros que vamos a almacenar
-        var firstNumber = 0;
-        var secondNumber = 0;
+        var firstNumber = 0.0;
+        var secondNumber = 0.0;
+        //el operador
+        var operator = "";
+        //el resultado
 
         //El textView que se encarga de la operacion
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
@@ -102,63 +104,91 @@ class MainActivity : AppCompatActivity() {
         }
 
         plus.setOnClickListener{
-
+            //Guardo el texto del primer numero
             var string1 = textViewOperation.text
+            //Guardo el texto del historial de operaciones
             var string2 = textViewHistory.text
-            firstNumber = textViewOperation.text as Int;
+            //Guardo el primer numero como un double
+            firstNumber = textViewOperation.text as Double
+            //Guardo el operador que voy a usar
+            operator = "+"
+            //concateno las string con espacios para que se muestre separado
             string2 = concat(string2 as String, " ")
             string1 = concat(string1 as String, " ")
-            //concateno
+            //concateno el historial con el primer numero para que se vea que operacion
+            // se va a realizar
             textViewHistory.text = concat(string2 as String, string1 as String)
+            //y ahora string2 sera el historial completo
             string2 = textViewHistory.text
+            // le añado el operador + al historial
             textViewHistory.text = concat(string2 as String, " + ")
+            //vacio el texto de operacion
             textViewOperation.text = ""
             //Deshabilito los botones
             disable()
         }
 
         equal.setOnClickListener{
-            
-        }
-
-        fun disable(){
-            pow.isEnabled = false;
-            root.isEnabled = false;
-            minus.isEnabled = false;
-            plus.isEnabled = false;
-            multiply.isEnabled = false;
-            divide.isEnabled = false;
-        }
-
-        fun enable(){
-            pow.isEnabled = true;
-            root.isEnabled = true;
-            minus.isEnabled = true;
-            plus.isEnabled = true;
-            multiply.isEnabled = true;
-            divide.isEnabled = true;
-        }
-
-        fun equal(v:View){
-            var string1 = textViewOperation.text
-            var string2 = textViewHistory.text
-            textViewHistory.text = concat(string2 as String, string1 as String)
+            if(operator.equals("+")){
+                secondNumber = textViewOperation.text as Double
+                var result = firstNumber+secondNumber
+                var string1 = textViewHistory.text
+                var string2 = textViewOperation.text
+                string1 = concat(string1 as String, " ")
+                string1 = concat(string1 as String, "+ ")
+                string2 = concat(string2 as String, " ")
+                textViewHistory.text = concat(string1 as String, string2 as String)
+                textViewOperation.text = result as String
+                enable()
+            }
         }
 
     }
 
+    fun enable(){
+        val plus = findViewById<Button>(R.id.btnPlus)
+        val pow = findViewById<Button>(R.id.btnPow)
+        val minus = findViewById<Button>(R.id.btnMinus)
+        val multiply = findViewById<Button>(R.id.btnMultiply)
+        val divide = findViewById<Button>(R.id.btnDivide)
+        val root = findViewById<Button>(R.id.btnSquareRoot)
+        pow.isEnabled = true;
+        root.isEnabled = true;
+        minus.isEnabled = true;
+        plus.isEnabled = true;
+        multiply.isEnabled = true;
+        divide.isEnabled = true;
+    }
+
+    fun disable(){
+        val plus = findViewById<Button>(R.id.btnPlus)
+        val pow = findViewById<Button>(R.id.btnPow)
+        val minus = findViewById<Button>(R.id.btnMinus)
+        val multiply = findViewById<Button>(R.id.btnMultiply)
+        val divide = findViewById<Button>(R.id.btnDivide)
+        val root = findViewById<Button>(R.id.btnSquareRoot)
+        pow.isEnabled = false;
+        root.isEnabled = false;
+        minus.isEnabled = false;
+        plus.isEnabled = false;
+        multiply.isEnabled = false;
+        divide.isEnabled = false;
+    }
+
+    //Funcion para limpiar el texto de operacion
     fun clear(v:View){
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
         textViewOperation.text = ""
     }
 
+    //Funcion para limpiar el historial y texto de operacion
     fun clearAll(v:View){
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
         val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
         textViewOperation.text = ""
         textViewHistory.text = ""
     }
-
+    //Funcion para concatenar varias string
     fun concat(s1: String, s2: String): String {
         return s1 + s2
     }
