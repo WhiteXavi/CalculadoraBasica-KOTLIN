@@ -20,4 +20,5 @@
     <string name="btnDivide">/</string>
     <string name="btnRoot">SQRT</string>
     <string name="number8">8</string>
+    <string name="btnChange">+/-</string>
 </resources>

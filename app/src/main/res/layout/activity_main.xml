@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="clearAll"
                 android:text="@string/buttonClearAll" />
 
             <Button
@@ -57,7 +56,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="clear"
                 android:text="@string/btnClear" />
 
             <Button
@@ -198,12 +196,11 @@
                 android:text="@string/btnDot" />
 
             <Button
-                android:id="@+id/btnEquals"
+                android:id="@+id/btnChange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="equal"
-                android:text="@string/btnEquals" />
+                android:text="@string/btnChange" />
 
             <Button
                 android:id="@+id/btnPlus"
@@ -212,6 +209,20 @@
                 android:layout_weight="1"
                 android:onClick="plus"
                 android:text="@string/btnPlus" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnEquals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/btnEquals"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
     </LinearLayout>

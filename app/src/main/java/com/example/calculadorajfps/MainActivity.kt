@@ -2,7 +2,6 @@ package com.example.calculadorajfps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import kotlin.math.pow
@@ -36,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val root = findViewById<Button>(R.id.btnSquareRoot)
         val clear = findViewById<Button>(R.id.btnClear)
         val clearAll = findViewById<Button>(R.id.btnClearAll)
+        val change = findViewById<Button>(R.id.btnChange)
 
         //Numeros que vamos a almacenar
         var firstNumber = 0.0;
@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         var operator = "";
         //el resultado
         var result = 0.0
+        //esto sirve para comprobar que la operacion esta hecha o no
+        var operationMade = false
         //El textView que se encarga de la operacion
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
         //El historial de operaciones
@@ -51,61 +53,124 @@ class MainActivity : AppCompatActivity() {
 
         //esto pone el text de operaciones con el numero correspondiente pero no añade el otro detras
         number0.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"0")
         }
 
         number1.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"1")
         }
 
         number2.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"2")
         }
 
         number3.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"3")
         }
 
         number4.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"4")
         }
 
         number5.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"5")
         }
 
         number6.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"6")
         }
 
         number7.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"7")
         }
 
         number8.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"8")
         }
 
         number9.setOnClickListener{
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,"9")
         }
 
         dot.setOnClickListener {
+            if (operationMade==true){
+                clearAll.callOnClick()
+            }
+            operationMade = false
             val string1 = textViewOperation.text
             textViewOperation.text = concat(string1 as String,".")
         }
 
+        change.setOnClickListener{
+            operationMade = false
+            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                firstNumber = 0.0
+                textViewOperation.text = "0"
+            }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
+            }
+            //guardo el numero que se esta usando
+            var usingNumber = (textViewOperation.text as String).toDouble()
+            //lo multiplico por -1, asi si es negativo se volvera positivo
+            // y si es positivo se volvera negativo
+            usingNumber *= -1
+            //ahora tengo que poner dicho numero en el texto
+            textViewOperation.text = usingNumber.toString()
+        }
+
         plus.setOnClickListener{
+            operationMade = false
             if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
@@ -138,6 +203,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         minus.setOnClickListener{
+            operationMade = false
             if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
@@ -170,6 +236,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         multiply.setOnClickListener{
+            operationMade = false
             if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
@@ -202,7 +269,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         divide.setOnClickListener{
-            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+            operationMade = false
+            if((textViewOperation.text.equals("") || textViewOperation.text.equals(null)) && (operator == "")){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
@@ -234,7 +302,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         pow.setOnClickListener{
-            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+            operationMade = false
+            if((textViewOperation.text.equals("") || textViewOperation.text.equals(null)) && (operator == "")){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
@@ -266,7 +335,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         root.setOnClickListener{
-            if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+            if((textViewOperation.text.equals("") || textViewOperation.text.equals(null)) && (operator == "")){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
@@ -318,10 +387,11 @@ class MainActivity : AppCompatActivity() {
         //Calculo de operaciones al pulsar el boton igual
         equal.setOnClickListener{
             //Comprobacion de que los campos no sean nulos al pulsar el boton igual
-            if(textViewOperation.text.equals(null)||textViewOperation.text.equals("")){
+            if((textViewOperation.text.equals(null)||textViewOperation.text.equals("")) && operator == ""){
                 result = 0.0
                 textViewHistory.text = result.toString()
                 textViewOperation.text = result.toString()
+                operationMade = true
             }
             //Comprobacion de si no hay operador al pulsar el boton igual
             if(operator == ""){
@@ -329,6 +399,7 @@ class MainActivity : AppCompatActivity() {
                     result = (textViewOperation.text as String).toDouble()
                     textViewHistory.text = result.toString()
                     textViewOperation.text = result.toString()
+                    operationMade = true
                 }
                 else{
                     clearAll.callOnClick()
@@ -352,6 +423,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
             //Realiza la operacion de restar
             if(operator.equals("-")){
@@ -371,6 +443,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
             //Realiza la operacion de multiplicacion
             if(operator.equals("*")){
@@ -390,6 +463,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
             //Realiza la operacion de division
             if(operator.equals("/")){
@@ -409,6 +483,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
             //Realiza la operacion de elevado a X si el boton de pow es pulsado
             if(operator.equals("pow")){
@@ -428,6 +503,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
             //Realiza la operacion de raiz cuadrada si el boton sqrt es pulsado
             if(operator.equals("sqrt")){
@@ -442,6 +518,7 @@ class MainActivity : AppCompatActivity() {
                 textViewOperation.text = result.toString()
                 enable()
                 operator = ""
+                operationMade = true
             }
 
         }
@@ -484,7 +561,5 @@ class MainActivity : AppCompatActivity() {
     fun concat(s1: String, s2: String): String {
         return s1 + s2
     }
-
-
-
+    
 }
