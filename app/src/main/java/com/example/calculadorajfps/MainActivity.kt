@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         //el operador
         var operator = "";
         //el resultado
-
+        var result = 0.0
         //El textView que se encarga de la operacion
         val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
         //El historial de operaciones
@@ -110,6 +110,9 @@ class MainActivity : AppCompatActivity() {
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
+            }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
             //Guardo el texto del historial de operaciones
@@ -138,6 +141,9 @@ class MainActivity : AppCompatActivity() {
             if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
+            }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
             }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
@@ -168,6 +174,9 @@ class MainActivity : AppCompatActivity() {
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
+            }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
             //Guardo el texto del historial de operaciones
@@ -196,6 +205,9 @@ class MainActivity : AppCompatActivity() {
             if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
                 firstNumber = 0.0
                 textViewOperation.text = "0"
+            }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
             }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
@@ -226,6 +238,9 @@ class MainActivity : AppCompatActivity() {
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
+            }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
             //Guardo el texto del historial de operaciones
@@ -255,6 +270,9 @@ class MainActivity : AppCompatActivity() {
                 firstNumber = 0.0
                 textViewOperation.text = "0"
             }
+            if(textViewHistory.text!=null || textViewHistory.text!=""){
+                textViewHistory.text = ""
+            }
             //Guardo el texto del primer numero
             var string1 = textViewOperation.text
             //Guardo el texto del historial de operaciones
@@ -277,91 +295,160 @@ class MainActivity : AppCompatActivity() {
             textViewOperation.text = ""
             //Deshabilito los botones
             disable()
+            equal.callOnClick()
         }
 
+        //Metodo para limpiar el texto de operacion
+        clear.setOnClickListener{
+            textViewOperation.text = ""
+            firstNumber = 0.0
+            secondNumber = 0.0
+            enable()
+        }
 
+        //Metodo para limpiar el texto e historial
+        clearAll.setOnClickListener{
+            textViewOperation.text = ""
+            textViewHistory.text = ""
+            firstNumber = 0.0
+            secondNumber = 0.0
+            enable()
+        }
+
+        //Calculo de operaciones al pulsar el boton igual
         equal.setOnClickListener{
+            //Comprobacion de que los campos no sean nulos al pulsar el boton igual
+            if(textViewOperation.text.equals(null)||textViewOperation.text.equals("")){
+                result = 0.0
+                textViewHistory.text = result.toString()
+                textViewOperation.text = result.toString()
+            }
+            //Comprobacion de si no hay operador al pulsar el boton igual
+            if(operator == ""){
+                if(textViewOperation.text!=null || textViewOperation.text!=""){
+                    result = (textViewOperation.text as String).toDouble()
+                    textViewHistory.text = result.toString()
+                    textViewOperation.text = result.toString()
+                }
+                else{
+                    clearAll.callOnClick()
+                }
+            }
+            //Realiza la operacion de sumar
             if(operator.equals("+")){
+                if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                    secondNumber = 0.0
+                    textViewOperation.text = "0"
+                }
                 secondNumber = (textViewOperation.text as String).toDouble()
-                var result = firstNumber+secondNumber
+                result = firstNumber+secondNumber
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
                 string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
-
+            //Realiza la operacion de restar
             if(operator.equals("-")){
+                if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                    secondNumber = 0.0
+                    textViewOperation.text = "0"
+                }
                 secondNumber = (textViewOperation.text as String).toDouble()
-                var result = firstNumber-secondNumber
+                result = firstNumber-secondNumber
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
                 string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
-
+            //Realiza la operacion de multiplicacion
             if(operator.equals("*")){
+                if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                    secondNumber = 0.0
+                    textViewOperation.text = "0"
+                }
                 secondNumber = (textViewOperation.text as String).toDouble()
-                var result = firstNumber*secondNumber
+                result = firstNumber*secondNumber
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
                 string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
-
+            //Realiza la operacion de division
             if(operator.equals("/")){
+                if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                    secondNumber = 0.0
+                    textViewOperation.text = "0"
+                }
                 secondNumber = (textViewOperation.text as String).toDouble()
-                var result = firstNumber/secondNumber
+                result = firstNumber/secondNumber
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
                 string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
-
+            //Realiza la operacion de elevado a X si el boton de pow es pulsado
             if(operator.equals("pow")){
+                if(textViewOperation.text.equals("") || textViewOperation.text.equals(null)){
+                    secondNumber = 0.0
+                    textViewOperation.text = "0"
+                }
                 secondNumber = (textViewOperation.text as String).toDouble()
-                var result = firstNumber.pow(secondNumber)
+                result = firstNumber.pow(secondNumber)
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
                 string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
-
+            //Realiza la operacion de raiz cuadrada si el boton sqrt es pulsado
             if(operator.equals("sqrt")){
-                var result = sqrt(firstNumber)
+                result = sqrt(firstNumber)
                 var string1 = textViewHistory.text
                 var string2 = textViewOperation.text
+                clearAll.callOnClick()
                 string1 = concat(string1 as String, " ")
-                string2 = concat(string2 as String, " = ")
-                string2 = concat(string2 as String, result.toString())
+                string2 = concat(string2 as String, "= ")
+                //string2 = concat(string2 as String, result.toString())
                 textViewHistory.text = concat(string1 as String, string2 as String)
                 textViewOperation.text = result.toString()
                 enable()
+                operator = ""
             }
 
         }
 
     }
 
+    //Funcion para habilitar todos los botones de operacion
     fun enable(){
         val plus = findViewById<Button>(R.id.btnPlus)
         val pow = findViewById<Button>(R.id.btnPow)
@@ -377,6 +464,7 @@ class MainActivity : AppCompatActivity() {
         divide.isEnabled = true;
     }
 
+    //Funcion para deshabilitar todos los botones de operacion
     fun disable(){
         val plus = findViewById<Button>(R.id.btnPlus)
         val pow = findViewById<Button>(R.id.btnPow)
@@ -392,19 +480,6 @@ class MainActivity : AppCompatActivity() {
         divide.isEnabled = false;
     }
 
-    //Funcion para limpiar el texto de operacion
-    fun clear(v:View){
-        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
-        textViewOperation.text = ""
-    }
-
-    //Funcion para limpiar el historial y texto de operacion
-    fun clearAll(v:View){
-        val textViewOperation = findViewById<TextView>(R.id.textViewOperation)
-        val textViewHistory = findViewById<TextView>(R.id.textViewHistory)
-        textViewOperation.text = ""
-        textViewHistory.text = ""
-    }
     //Funcion para concatenar varias string
     fun concat(s1: String, s2: String): String {
         return s1 + s2
